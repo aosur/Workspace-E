@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Plantilla</title>
+</head>
+<body>
+	<header th:fragment="header">
+		<div>
+			<a th:href="@{/(lang=es)}">ES</a> |
+			<a th:href="@{/(lang=en)}">EN</a>
+		</div>
+		<h1 th:text="#{plantilla.titulo}">Titulo</h1>
+	</header>
+
+	<footer th:fragment="footer">
+		<p> [[#{plantilla.pie-pagina}]] <a href="https://www.google.com.pe" target="_blank">[[#{accion.visitanos}]]</a></p>
+	</footer>
+
+</body>
+</html>

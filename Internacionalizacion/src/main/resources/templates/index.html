@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/styles.css" />
+<title>Index</title>
+</head>
+<body>
+	<header th:replace="layout/plantilla :: header"></header>
+	<a th:href="@{/agregar}" th:text="#{persona.crear}"></a>
+	<th:block th:if="${personas!=null and !personas.empty}">
+		<table>
+			<thead>
+				<tr>
+					<th>[[#{persona.nombre}]]</th>
+					<th>[[#{persona.apellido}]]</th>
+					<th>[[#{persona.email}]]</th>
+					<th>[[#{persona.telefono}]]</th>
+					<th colspan="2">[[#{persona.acciones}]]</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="persona : ${personas}">
+					<td th:text="${persona.nombre}"></td>
+					<td th:text="${persona.apellido}"></td>
+					<td th:text="${persona.email}"></td>
+					<td th:text="${persona.telefono}"></td>
+					<td>
+						<form th:action="@{/eliminar/} + ${persona.id}" method="post">
+							<button id="eliminar"
+								th:onclick="return confirm( 'Está seguro que quiere eliminar?')">[[#{accion.eliminar}]]</button>
+						</form>
+					</td>
+					<td>
+						<form th:action="@{/editar/} + ${persona.id}" method="get">
+							<button type="submit" id="editar">[[#{accion.editar}]]</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</th:block>
+
+	<th:block th:unless="${personas!=null and !personas.empty}">
+		<p th:text="#{persona.lista-vacia}"></p>
+	</th:block>
+
+	<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+table, td, th {
+	border : 1px solid black;
+	border-spacing: 5px;
+	cursor: pointer;
+}
+
+tr:nth-child(even) {
+	background-color: rgb(250 200 150 / 0.3);
+}
+
+thead > tr {
+	background-color: rgb(250 200 150 / 0.7);
+}

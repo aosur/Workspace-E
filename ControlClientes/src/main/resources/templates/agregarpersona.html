@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+<meta charset="UTF-8">
+<title>Agregar Personas</title>
+</head>
+<body>
+	<header th:replace="layout/plantilla :: header"></header>
+	<h3 th:text="${titulo}"></h3>
+	<a href="/inicio" th:text="#{accion.regresar}"></a>
+	<br /><br />
+	<div>
+		<form th:object="${persona}" action="/guardar" method="post">
+			<input type="hidden" th:field="*{id}" name="id" id="id" />
+			<div>
+				<label for="nombre">[[#{persona.nombre}]]: </label> 
+				<input type="text" th:field="*{nombre}" name="nombre" id="nombre"/>
+				<small th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+			</div>
+			<br />
+
+			<div>
+				<label for="apellido">[[#{persona.apellido}]]: </label>
+				<input type="text" th:field="*{apellido}" name="apellido" id="apellido"/>
+				<small th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+			</div>
+			<br />
+
+			<div>
+				<label for="email">[[#{persona.email}]]: </label>
+				<input type="text" th:field="*{email}" name="email" id="email"/> 
+				<small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+			</div>
+			<br />
+
+			<div>
+				<label for="telefono">[[#{persona.telefono}]]: </label>
+				<input type="tel" th:field="*{telefono}" name="telefono" id="telefono"/> 
+				<small th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+			</div>
+			<br />
+			<input type="submit" th:value="#{accion.guardar}"/>
+
+		</form>
+	</div>
+	
+	<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

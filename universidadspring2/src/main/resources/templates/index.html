@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/styles.css" />
+<title>Index</title>
+</head>
+<body>
+
+	<h1 th:text="${header}"></h1>
+	<p th:text="${par}"></p>
+	<br>
+	
+	<p th:text="${class}"></p>	
+    <div th:object="${persona}">
+		<p>Nombre: <span th:text="*{nombre}"></span></p>
+		<p>Apellido: <span th:text="*{apellido}"></span></p>
+		<p>Email: <span th:text="*{email}"></span></p>
+		<p>Telefono: <span th:text="*{telefono}"></span></p>
+	</div>
+	<br>
+	
+<th:block th:if="${personas!=null and !personas.empty}">
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Email</th>
+				<th>Telefono</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="persona : ${personas}">
+				<td th:text="${persona.nombre}"></td>
+				<td th:text="${persona.apellido}"></td>
+				<td th:text="${persona.email}"></td>
+				<td th:text="${persona.telefono}"></td>
+			</tr>			
+		</tbody>
+	</table>
+</th:block>
+
+			<p th:text="${nombre}"></p>
+	
+<th:block th:unless="${personas!=null and !personas.empty}">
+	<p>La lista de personas está vacía</p>
+</th:block>
+
+</body>
+</html>
