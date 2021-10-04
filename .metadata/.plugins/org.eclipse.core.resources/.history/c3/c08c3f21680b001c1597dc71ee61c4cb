@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/styles.css" />
+<title>Index</title>
+</head>
+<body>
+	<h1>Inicio</h1>
+	<a th:href="@{/agregar}">Crear Persona</a>
+	<th:block th:if="${personas!=null and !personas.empty}">
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Email</th>
+				<th>Telefono</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="persona : ${personas}">
+				<td th:text="${persona.nombre}"></td>
+				<td th:text="${persona.apellido}"></td>
+				<td th:text="${persona.email}"></td>
+				<td th:text="${persona.telefono}"></td>
+				<td>
+				<form th:action="@{/editar/} + ${persona.id}">
+					<button type = "submit" id="editar">Editar</button>
+					<button id="eliminar" th:formaction="@{/eliminar/} + ${persona.id}" 
+					th:onclick="return confirm('Está seguro que quiere eliminar ?')">Eliminar</button>
+				</form>				
+				</td>
+			</tr>			
+		</tbody>
+	</table>
+</th:block>
+	
+<th:block th:unless="${personas!=null and !personas.empty}">
+	<p>La lista de personas está vacía</p>
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=InterfacesVsAbstractClasses/src&lt;com.app.model{InterfacePrueba.java[InterfacePrueba" modifiers="513" timestamp="1628706674570"/>
+<typeInfo handle="=Transport/src&lt;com.devtech.training.transportation{Train.java[Train" modifiers="1" timestamp="1628605786119"/>
+<typeInfo handle="=samyct/src\/main\/java&lt;com.latinaut.samyct.service{EquipoService.java[EquipoService" modifiers="513" timestamp="1632698081850"/>
+<typeInfo handle="=samyct/src\/main\/java&lt;com.latinaut.samyct.service{LineaService.java[LineaService" modifiers="513" timestamp="1632676118010"/>
+<typeInfo handle="=samyct/C:\/Users\/sinfo\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/2.5.5\/spring-data-jpa-2.5.5.jar&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1632613751268"/>
+<typeInfo handle="=samyct/src\/main\/java&lt;com.latinaut.samyct.service{OrdenService.java[OrdenService" modifiers="513" timestamp="1632760747503"/>
+<typeInfo handle="=samyct/src\/main\/java&lt;com.latinaut.samyct.service{EstadoOrdenService.java[EstadoOrdenService" modifiers="513" timestamp="1632758857665"/>
+</typeInfoHistroy>

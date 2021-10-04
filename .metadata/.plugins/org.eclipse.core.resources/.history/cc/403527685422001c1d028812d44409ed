@@ -1,0 +1,5 @@
+package com.amigoscode.app.security;
+
+public class ApplicationUserPermission {
+
+}

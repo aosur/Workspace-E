@@ -1,0 +1,51 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.latinaut.samyct.bean.Linea;
+import com.latinaut.samyct.repository.LineaRepository;
+import com.latinaut.samyct.service.LineaService;
+
+@Service
+public class LineaServiceImpl implements LineaService {
+
+	@Autowired
+	LineaRepository repository;
+	
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Linea guardar(Linea linea) {
+		if(linea.getId() == null) {
+			int id = repository.currentControlTable();
+			linea.setId(id);
+			repository.updateControlTable();
+		}
+		return repository.save(linea);
+	}
+
+	@Override
+	public void eliminar(Linea linea) {
+		repository.delete(linea);
+	}
+
+	@Override
+	public Optional<Linea> buscar(Integer id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public List<Linea> listarTodos() {
+		return repository.findAll();
+	}
+
+	@Override
+	public boolean existeLinea(Integer id) {
+		return repository.existsById(id);
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.latinaut.samyct.repository;
+
+import java.util.Set;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import com.latinaut.samyct.bean.Orden;
+
+public interface OrdenRepository extends JpaRepository<Orden, Integer> {
+	
+	Set<Orden> findByEquipoId(Integer equipoId);
+	Optional<Orden> findByIdAndEquipoId(Integer id, Integer equipoId);
+
+	@Query(value="SELECT valor FROM Control WHERE parametro = 'Ordenes'", nativeQuery = true)
+    int currentControlTable();
+
+    @Modifying 
+    @Query(value="UPDATE control SET valor = valor + 1 WHERE parametro = 'Ordenes'", nativeQuery = true)
+    int updateControlTable();
+}

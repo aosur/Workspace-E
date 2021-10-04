@@ -1,0 +1,60 @@
+package com.latinaut.samyct.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.latinaut.samyct.bean.EstadoOrden;
+import com.latinaut.samyct.exception.ResourceNotFoundException;
+import com.latinaut.samyct.service.EstadoOrdenService;
+import com.latinaut.samyct.service.OrdenService;
+
+@RestController
+@RequestMapping("api/v1/")
+public class EstadoOrdenController {
+	//revisa usuarios//
+	@Autowired
+	private EstadoOrdenService estadoService;
+	
+	@Autowired
+	private OrdenService ordenService;
+	
+	@GetMapping("ordenes/{ordenId}/estado")
+	public EstadoOrden getEstadoOrden(@PathVariable Integer ordenId) {
+		return ordenService.buscar(ordenId)
+				.map(orden -> {
+					return orden.getEstadoOrden();
+				}).orElseThrow(() -> new ResourceNotFoundException("orden " + ordenId + " no encontrada"));
+	}
+	
+	@PostMapping("ordenes/{ordenId}/estado")
+	public EstadoOrden createEstadoOrden(@RequestBody EstadoOrden estado, @PathVariable Integer ordenId) {
+		return ordenService.buscar(ordenId)
+				.map(orden -> {
+					estado.setOrden(orden);
+					return estadoService.guardar(estado);
+				}).orElseThrow(() -> new ResourceNotFoundException("orden " + ordenId + " no encontrada"));
+	}
+	
+	@PutMapping("ordenes/{ordenId}/estado")
+	public EstadoOrden updateEstadoOrden(@RequestBody EstadoOrden estadoRequest, @PathVariable Integer ordenId,
+				@PathVariable Integer estadoId) {
+		//revisa usuarios
+		return ordenService.buscar(ordenId)
+				.map(orden -> {
+					EstadoOrden estado = orden.getEstadoOrden();
+					estado.setEstado(estadoRequest.getEstado());
+					estado.setPrometido(estadoRequest.getPrometido());
+					estado.setGarantia(estadoRequest.getGarantia());
+					estado.setTipo(estadoRequest.getTipo());
+					estado.setEntregado(estadoRequest.getEntregado());
+					return estadoService.guardar(estado);
+				}).
+
+	}
+}

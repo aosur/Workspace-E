@@ -1,0 +1,6 @@
+1632926025537	Rename type 'Universidadspring11Application'
+1632926032297	Rename type 'Universidadspring11ApplicationTests'
+1632927139217	Delete element
+1632972150603	Delete element
+1632973353096	Extract local variable 'adminUser'
+1632973704618	Rename compilation unit 'PasswordEncoder.java'

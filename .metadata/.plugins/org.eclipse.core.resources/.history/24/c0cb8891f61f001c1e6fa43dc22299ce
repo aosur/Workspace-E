@@ -1,0 +1,60 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import com.latinaut.samyct.bean.Empleado;
+import com.latinaut.samyct.repository.EmpleadoRepository;
+import com.latinaut.samyct.service.EmpleadoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class EmpleadoServiceImpl implements EmpleadoService {
+
+    @Autowired
+    private EmpleadoRepository repository;
+
+    @Override
+    public Optional<Empleado> buscar(Integer id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public void eliminar(Empleado empleado) {
+        repository.delete(empleado);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Empleado guardar(Empleado empleado) {   
+
+        if(empleado.getId() == null) {
+            int id = repository.currentControlTable();
+            empleado.setId(id);
+            repository.updateControlTable();
+        }
+
+        return repository.save(empleado);
+    }
+
+    @Override
+    public List<Empleado> listarTodos() {
+        return repository.findAll();
+    }
+
+    @Override
+    public boolean existeEmpleado(Integer id) {
+        return repository.existsById(id);
+    }
+
+	@Override
+	public Set<Empleado> listaPorFuncion(String funcion) {
+		return null;
+	}
+    
+    
+}

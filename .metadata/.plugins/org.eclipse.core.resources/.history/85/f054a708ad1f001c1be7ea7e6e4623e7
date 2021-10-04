@@ -1,0 +1,9 @@
+package com.latinaut.samyct.service;
+
+import com.latinaut.samyct.bean.EstadoOrden;
+
+public interface EstadoOrdenService {
+
+	EstadoOrden guardar(EstadoOrden estadoOrden);
+	Optional<EstadoOrden> buscar(Integer id);
+}

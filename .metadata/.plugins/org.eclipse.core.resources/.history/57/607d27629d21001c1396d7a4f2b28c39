@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function() {
+		const p = document.createElement("p");
+		p.text = "Ahi vamos";
+		div.appendChild(p);
+	}
+</script>
+</head>
+<body>
+	<h1>Hello Spring Boot Security</h1>
+	<div></div>
+</body>
+</html>

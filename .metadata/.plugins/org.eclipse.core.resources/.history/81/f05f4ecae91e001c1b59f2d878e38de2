@@ -1,0 +1,7 @@
+package com.latinaut.samyct.service;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LineaService extends JpaRepository<T, ID> {
+
+}

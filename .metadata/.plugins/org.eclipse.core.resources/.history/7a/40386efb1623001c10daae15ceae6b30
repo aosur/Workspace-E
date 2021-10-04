@@ -1,0 +1,19 @@
+package com.amigoscode.app.security;
+
+import java.util.Set;
+
+import com.google.common.collect.Sets;
+
+public enum ApplicationUserRole {
+
+	STUDENT(Sets.newHashSet());
+	
+	
+	private final Set<ApplicationUserPermission> permissions;
+
+	private ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
+		this.permissions = permissions;
+	}
+	
+	
+}

@@ -1,0 +1,15 @@
+package com.amigoscode.app.security;
+
+public class ApplicationUserPermission {
+
+	STUDENT_READ,
+	STUDENT_WRITE;
+	
+	private final String permission;
+
+	public ApplicationUserPermission(String permission) {
+		this.permission = permission;
+	}
+	
+	
+}

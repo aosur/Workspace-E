@@ -1,0 +1,10 @@
+package com.latinaut.samyct.bean;
+
+public class Equipo {
+
+	private Integer id; 
+	private String marca;
+	private String modelo;
+	private String serie;
+	private Linea linea;
+}

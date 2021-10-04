@@ -1,0 +1,9 @@
+package com.latinaut.samyct.service;
+
+import com.latinaut.samyct.bean.Equipo;
+
+public interface EquipoService {
+
+	Equipo guardar(Equipo equipo);
+	void eliminar(Equipo equipo);
+}

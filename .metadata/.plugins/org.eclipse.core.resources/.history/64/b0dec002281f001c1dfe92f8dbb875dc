@@ -1,0 +1,5 @@
+package com.latinaut.samyct.util.criteria;
+
+public class OrdenCriteria {
+
+}

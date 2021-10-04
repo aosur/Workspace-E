@@ -1,0 +1,54 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.Optional;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.latinaut.samyct.bean.Contacto;
+import com.latinaut.samyct.bean.Equipo;
+import com.latinaut.samyct.repository.EquipoRepository;
+import com.latinaut.samyct.service.EquipoService;
+
+public class EquipoServiceImpl implements EquipoService {
+
+	@Autowired
+	EquipoRepository repository;
+
+	@Override
+	public Set<Equipo> buscarPorLineaId(Integer lineaId) {
+		return repository.findByLineaId(lineaId);
+	}
+
+	@Override
+	public Optional<Equipo> buscarPorIdYLineaId(Integer id, Integer lineaId) {
+		return repository.findByIdAndLineaId(id, lineaId);
+	}
+
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public Equipo guardar(Equipo equipo) {
+		if(equipo.getId() == null) {
+			int id = repository.currentControlTable();
+			equipo.setId(id);
+			repository.updateControlTable();
+		}
+		return repository.save(equipo);
+	}
+
+	@Override
+	public void eliminar(Equipo equipo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Optional<Equipo> buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

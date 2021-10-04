@@ -1,0 +1,16 @@
+package com.latinaut.samyct.service;
+
+import java.util.Optional;
+import java.util.Set;
+
+import com.latinaut.samyct.bean.Orden;
+
+public interface OrdenService {
+
+	Set<Orden> buscarPorEquipoId(Integer equipoId);
+	Optional<Orden> buscarPorIdYEquipoId(Integer id, Integer equipoId);
+	Orden guardar(Orden orden);
+	void eliminar(Orden orden);
+	Optional<Orden> buscar(Integer id);
+	int nroOrdenActual();
+}

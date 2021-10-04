@@ -1,0 +1,62 @@
+package com.latinaut.samyct.controller;
+
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.latinaut.samyct.bean.Orden;
+import com.latinaut.samyct.service.ContactoService;
+import com.latinaut.samyct.service.EquipoService;
+import com.latinaut.samyct.service.OrdenService;
+import com.latinaut.samyct.service.UsuarioService;
+import com.latinaut.samyct.util.criteria.OrdenCriteria;
+
+@RestController
+@RequestMapping("api/v1/")
+public class OrdenController {
+
+	@Autowired
+	private OrdenService ordenService;
+	
+	@Autowired
+	private ContactoService contactoService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private EquipoService equipoService;
+	
+	@GetMapping("equipos/{equipoId}/ordenes")
+	public Set<Orden> getAllOrdenesByEquipo(@PathVariable Integer equipoId) {
+		return ordenService.buscarPorEquipoId(equipoId);
+	}
+	
+	@PostMapping("ordenes")
+	public Orden createOrden(@RequestBody OrdenCriteria ordenCriteria) {
+		
+		Integer contId = ordenCriteria.getContactoId();
+		Integer empId = ordenCriteria.getUsuarioId();
+		Integer equiId = ordenCriteria.getEquipoId();
+		Orden orden = new Orden();
+		
+//		return contactoService.buscar(contId)
+//					.map(contacto -> {
+//						orden.setContacto(contacto);
+//						return usuarioService.buscar(empId).get();
+//					}).map(usuario -> {
+//						orden.setUsuario(usuario);
+//						return equipoService.buscar(equiId).get();
+//					}).map(equipo -> {
+//						orden.setEquipo(equipo);
+//						return ordenService.guardar(orden);
+//					}).orElseThrow(() -> new IllegalStateException("fallo al guardar la orden"));	
+		return orden;
+	}
+}

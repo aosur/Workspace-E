@@ -1,0 +1,15 @@
+package com.latinaut.samyct.service;
+
+import java.util.Optional;
+import java.util.Set;
+
+import com.latinaut.samyct.bean.Equipo;
+
+public interface EquipoService {
+
+	Set<Equipo> buscarPorLineaId(Integer lineaId);
+    Optional<Equipo> buscarPorIdYLineaId(Integer id, Integer lineaId);
+    Equipo guardar(Equipo equipo);
+    void eliminar(Equipo equipo);
+    Optional<Equipo> buscar(Integer id);
+}

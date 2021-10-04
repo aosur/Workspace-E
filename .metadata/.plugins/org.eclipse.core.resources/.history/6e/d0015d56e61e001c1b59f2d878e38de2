@@ -1,0 +1,19 @@
+package com.latinaut.samyct.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import com.latinaut.samyct.bean.Equipo;
+
+public interface EquipoRepository extends JpaRepository<Equipo, Integer>{
+	
+	Set<Equipo> findByLineaId(Integer lineaId);
+
+	@Query(value="SELECT valor FROM Control WHERE parametro = 'Equipos'", nativeQuery = true)
+    int currentControlTable();
+
+    @Modifying 
+    @Query(value="UPDATE control SET valor = valor + 1 WHERE parametro = 'Equipos'", nativeQuery = true)
+    int updateControlTable();
+}

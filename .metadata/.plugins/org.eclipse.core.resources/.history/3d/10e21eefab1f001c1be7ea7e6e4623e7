@@ -1,0 +1,27 @@
+package com.latinaut.samyct.bean;
+
+import java.time.LocalDate;
+
+public class EstadoOrden {
+
+	private Integer id;
+	private String estado;
+	private LocalDate prometido;
+	private LocalDate garantia;
+	private String tipo;
+	private LocalDate entregado;
+	
+	public EstadoOrden(String estado, LocalDate prometido, LocalDate garantia, String tipo, LocalDate entregado) {
+		this.estado = estado;
+		this.prometido = prometido;
+		this.garantia = garantia;
+		this.tipo = tipo;
+		this.entregado = entregado;
+	}
+
+	public EstadoOrden() {
+
+	}
+	
+	
+}

@@ -1,0 +1,17 @@
+package com.latinaut.samyct.service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import com.latinaut.samyct.bean.Empleado;
+
+public interface EmpleadoService {
+    
+    List<Empleado> listarTodos();
+    Empleado guardar(Empleado empleado);
+    void eliminar(Empleado empleado);
+    Optional<Empleado> buscar(Integer id);
+    boolean existeEmpleado(Integer id);
+    List<Empleado> listaPorFuncion(String funcion);
+}

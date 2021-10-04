@@ -1,0 +1,15 @@
+package com.latinaut.samyct.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.latinaut.samyct.bean.Linea;
+
+public interface LineaService {
+
+	Linea guardar(Linea linea);
+	void eliminar(Linea linea);
+	Optional<Linea> buscar(Linea id);
+	List<Linea> buscarTodos();
+	boolean existeLinea(Integer id);
+}

@@ -1,0 +1,5 @@
+package com.latinaut.samyct.bean;
+
+public class Equipo {
+
+}

@@ -1,0 +1,200 @@
+package com.latinaut.samyct.bean;
+
+import java.time.LocalDate;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name="Ordenes")
+public class Orden {
+    
+	@Id
+	@Column(name="idorden")
+    private Integer id;
+
+	@Column(name="problema")
+    private String problema;
+
+	@Column(name="fecha")
+    private LocalDate fechaIngreso;
+
+	@Column(name="tipo")
+    private String tipo;
+
+	@Column(name="ordenexterno")
+    private String ordenExt;
+
+	@Column(name="observacionint")
+    private String obsInterna;
+
+	@Column(name="observacionext")
+    private String obsExterna;
+
+	@Column(name="visita")
+    private LocalDate visita;
+
+	@Column(name="codverifi")
+    private String codVerifi;
+    
+	@ManyToOne
+	@JoinColumn(name="idequipo")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	//@JsonIgnore
+    private Equipo equipo;
+	
+	@ManyToOne
+	@JoinColumn(name="idemp")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JsonIgnore
+    private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name="idcont")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JsonIgnore
+    private Contacto contacto;
+	
+	@OneToOne(fetch=FetchType.LAZY, mappedBy="orden",cascade=CascadeType.ALL)
+	@JsonIgnore
+	private EstadoOrden estadoOrden;
+
+	public Orden(String problema, LocalDate fechaIngreso, String tipo, 
+			String ordenExt, String obsInterna, String obsExterna, LocalDate visita) {
+		this.problema = problema;
+		this.fechaIngreso = fechaIngreso;
+		this.tipo = tipo;
+		this.ordenExt = ordenExt;
+		this.obsInterna = obsInterna;
+		this.obsExterna = obsExterna;
+		this.visita = visita;
+	}
+
+	public Orden(String problema, LocalDate fechaIngreso, String tipo) {
+		this.problema = problema;
+		this.fechaIngreso = fechaIngreso;
+		this.tipo = tipo;
+	}
+
+	public Orden() {
+
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getProblema() {
+		return problema;
+	}
+
+	public void setProblema(String problema) {
+		this.problema = problema;
+	}
+
+	public LocalDate getFechaIngreso() {
+		return fechaIngreso;
+	}
+
+	public void setFechaIngreso(LocalDate fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getOrdenExt() {
+		return ordenExt;
+	}
+
+	public void setOrdenExt(String ordenExt) {
+		this.ordenExt = ordenExt;
+	}
+
+	public String getObsInterna() {
+		return obsInterna;
+	}
+
+	public void setObsInterna(String obsInterna) {
+		this.obsInterna = obsInterna;
+	}
+
+	public String getObsExterna() {
+		return obsExterna;
+	}
+
+	public void setObsExterna(String obsExterna) {
+		this.obsExterna = obsExterna;
+	}
+
+	public LocalDate getVisita() {
+		return visita;
+	}
+
+	public void setVisita(LocalDate visita) {
+		this.visita = visita;
+	}
+
+	public String getCodVerifi() {
+		return codVerifi;
+	}
+
+	public void setCodVerifi(String codVerifi) {
+		this.codVerifi = codVerifi;
+	}
+
+	public Equipo getEquipo() {
+		return equipo;
+	}
+
+	public void setEquipo(Equipo equipo) {
+		this.equipo = equipo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Contacto getContacto() {
+		return contacto;
+	}
+
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
+	}
+
+	public EstadoOrden getEstadoOrden() {
+		return estadoOrden;
+	}
+
+	public void setEstadoOrden(EstadoOrden estadoOrden) {
+		this.estadoOrden = estadoOrden;
+	}
+	
+	
+}

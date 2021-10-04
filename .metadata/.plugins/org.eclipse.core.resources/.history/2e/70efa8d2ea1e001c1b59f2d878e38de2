@@ -1,0 +1,41 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.latinaut.samyct.bean.Linea;
+import com.latinaut.samyct.service.LineaService;
+
+public class LineaServiceImpl implements LineaService {
+
+	@Override
+	public Linea guardar(Linea linea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminar(Linea linea) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Optional<Linea> buscar(Linea id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Linea> buscarTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean existeLinea(Integer id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

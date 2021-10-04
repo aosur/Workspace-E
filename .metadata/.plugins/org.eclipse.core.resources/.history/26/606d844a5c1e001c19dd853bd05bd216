@@ -1,0 +1,26 @@
+package com.latinaut.samyct.bean;
+
+import java.time.LocalDate;
+
+public class Orden {
+    
+    private Integer id;
+
+    private String problema;
+
+    private LocalDate fechaIngreso;
+
+    private String tipo;
+
+    private String ordenExt;
+
+    private String obsInterna;
+
+    private String obsExterna;
+
+    private LocalDate visita;
+
+    private String codVerifi;
+
+    
+}

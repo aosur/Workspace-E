@@ -1,0 +1,7 @@
+package com.amigoscode.app.security;
+
+public enum ApplicationUserRole {
+
+	STUDENT,
+	ADMIN
+}

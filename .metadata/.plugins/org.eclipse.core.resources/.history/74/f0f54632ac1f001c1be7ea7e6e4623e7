@@ -1,0 +1,47 @@
+package com.latinaut.samyct.bean;
+
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="estadoorden")
+public class EstadoOrden {
+
+	@Id
+	@Column(name="idorden")
+	private Integer id;
+	
+	@Column(name="estado")
+	private String estado;
+	
+	@Column(name="prometido")
+	private LocalDate prometido;
+	
+	@Column(name="garantia")
+	private LocalDate garantia;
+	
+	@Column(name="tipo")
+	private String tipo;
+	
+	@Column(name="entregado")
+	private LocalDate entregado;
+	
+	public EstadoOrden(String estado, LocalDate prometido, LocalDate garantia, String tipo, LocalDate entregado) {
+		this.estado = estado;
+		this.prometido = prometido;
+		this.garantia = garantia;
+		this.tipo = tipo;
+		this.entregado = entregado;
+	}
+
+	public EstadoOrden() {
+
+	}
+	
+	
+}

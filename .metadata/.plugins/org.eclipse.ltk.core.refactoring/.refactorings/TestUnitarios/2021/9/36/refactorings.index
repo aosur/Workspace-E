@@ -1,0 +1,6 @@
+1630699122237	Rename package 'com.metodologias.TestUnitarios'
+1630699142666	Delete element
+1630704253345	Delete element
+1630705097904	Extract local variable 'cliente'
+1630707917948	Extract local variable 'removed'
+1630712219519	Extract local variable 'transferido'

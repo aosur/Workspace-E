@@ -1,0 +1,8 @@
+package com.latinaut.samyct.util.criteria;
+
+public class OrdenCriteria {
+
+	private Integer contactoId;
+	private Integer contactoId;
+	private Integer contactoId;
+}

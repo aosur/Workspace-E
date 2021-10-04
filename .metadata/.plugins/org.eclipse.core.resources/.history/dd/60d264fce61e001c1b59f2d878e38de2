@@ -1,0 +1,15 @@
+package com.latinaut.samyct.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.latinaut.samyct.bean.Equipo;
+
+public interface EquipoService {
+
+	Equipo guardar(Equipo equipo);
+	void eliminar(Equipo equipo);
+	List<Equipo> listaTodo();
+	Optional<Equipo> buscar(Integer id);
+	boolean existeEquipo(Integer id);
+}

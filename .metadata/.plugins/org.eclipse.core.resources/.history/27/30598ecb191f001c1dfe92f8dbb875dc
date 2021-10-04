@@ -1,0 +1,6 @@
+package com.latinaut.samyct.service;
+
+public interface OrdenService {
+
+	Orden guardar()
+}

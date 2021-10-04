@@ -1,0 +1,45 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.Optional;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.latinaut.samyct.bean.Orden;
+import com.latinaut.samyct.service.OrdenService;
+
+public class OrdenServiceImpl implements OrdenService {
+
+	@Autowired
+	private OrdenService ordenService;
+	@Override
+	public Set<Orden> buscarPorEquipoId(Integer equipoId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<Orden> buscarPorIdYEquipoId(Integer id, Integer equipoId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Orden guardar(Orden orden) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eliminar(Orden orden) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Optional<Orden> buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

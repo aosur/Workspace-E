@@ -1,0 +1,66 @@
+package com.latinaut.samyct.controller;
+
+import java.util.List;
+
+import com.latinaut.samyct.bean.Usuario;
+import com.latinaut.samyct.exception.ResourceNotFoundException;
+import com.latinaut.samyct.service.EmpleadoService;
+import com.latinaut.samyct.service.UsuarioService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("api/v1/")
+public class UsuarioController {
+    
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private EmpleadoService empleadoService;
+    
+    @GetMapping("empleados/{empleadoId}/usuarios")
+    public Usuario getUsuario(@PathVariable Integer empleadoId) {
+        return empleadoService.buscar(empleadoId)
+                .map(empleado -> {
+                    return empleado.getUsuario();
+                }).orElseThrow(() -> new ResourceNotFoundException("empleado " + empleadoId + " no encontrado"));
+    }
+
+    @GetMapping("empleados/usuarios")
+    public List<Usuario> getUsuarios() {
+        return usuarioService.listarTodo();
+    }
+
+    @PostMapping("empleados/{empleadoId}/usuarios")
+    public Usuario createUsuario(@RequestBody Usuario usuario, @PathVariable Integer empleadoId) {
+        return empleadoService.buscar(empleadoId)
+                .map(empleado -> {
+                    usuario.setEmpleado(empleado);
+                    return usuarioService.guardar(usuario);
+                }).orElseThrow(() -> new ResourceNotFoundException("empleado " + empleadoId + " no encontrado"));
+    }
+
+    @PutMapping("empleados/{empleadoId}/usuarios/{usuarioId}")
+    public Usuario updateUsuario(@RequestBody Usuario usuarioRequest, @PathVariable Integer empleadoId, 
+            @PathVariable Integer usuarioId) {
+
+        if(!empleadoService.existeEmpleado(empleadoId) || empleadoId != usuarioId)
+                throw new IllegalStateException("Busqueda incorrecta");
+
+        return usuarioService.buscar(usuarioId)
+                .map(usuario -> {
+                    usuario.setUsuario(usuarioRequest.getUsuario());
+                    usuario.setClave(usuarioRequest.getClave());
+                    usuario.setRol(usuarioRequest.getRol());
+                    return usuarioService.guardar(usuario);
+                }).orElseThrow(() -> new ResourceNotFoundException("usuario " + usuarioId + " no encontrado"));
+    }
+}

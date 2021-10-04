@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="ControlClientes"/>
+<aop-project name="AmigosSecurity"/>
+<aop-project name="Internacionalizacion"/>
+<aop-project name="SeguridadSpring"/>
+</aop-reference-model>

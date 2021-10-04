@@ -1,0 +1,8 @@
+package com.latinaut.samyct.bean;
+
+public class Linea {
+
+	private Integer idlinea;
+	private String nombre;
+	private String descripcion;
+}

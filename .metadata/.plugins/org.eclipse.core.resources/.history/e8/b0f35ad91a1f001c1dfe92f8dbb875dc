@@ -1,0 +1,54 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.Optional;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.latinaut.samyct.bean.Orden;
+import com.latinaut.samyct.repository.OrdenRepository;
+import com.latinaut.samyct.service.OrdenService;
+
+@Service
+public class OrdenServiceImpl implements OrdenService {
+
+	@Autowired
+	private OrdenRepository ordenRepository;
+	
+	
+	@Override
+	public Set<Orden> buscarPorEquipoId(Integer equipoId) {
+		return ordenRepository.findByEquipoId(equipoId);
+	}
+
+	@Override
+	public Optional<Orden> buscarPorIdYEquipoId(Integer id, Integer equipoId) {
+		return ordenRepository.findByIdAndEquipoId(id, equipoId);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Orden guardar(Orden orden) {
+		if(orden.getId() == null) {
+			int id = ordenRepository.currentControlTable();
+			orden.setId(id);
+			ordenRepository.updateControlTable();
+		}
+		return ordenRepository.save(orden);
+	}
+
+	@Override
+	public void eliminar(Orden orden) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Optional<Orden> buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

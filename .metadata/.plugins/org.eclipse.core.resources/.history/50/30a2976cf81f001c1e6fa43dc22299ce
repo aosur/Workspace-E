@@ -1,0 +1,21 @@
+package com.latinaut.samyct.repository;
+
+import java.util.Set;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import com.latinaut.samyct.bean.Empleado;
+
+public interface EmpleadoRepository extends JpaRepository<Empleado, Integer> {
+    
+    @Query(value="SELECT valor FROM Control WHERE parametro = 'Empleados'", nativeQuery = true)
+    int currentControlTable();
+
+    @Modifying 
+    @Query(value="UPDATE control SET valor = valor + 1 WHERE parametro = 'Empleados'", nativeQuery = true)
+    int updateControlTable();   
+    
+    Set<Empleado> findByFuncion(String funcion);
+}

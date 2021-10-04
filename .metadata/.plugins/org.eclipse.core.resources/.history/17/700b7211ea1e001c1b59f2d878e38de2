@@ -1,0 +1,9 @@
+package com.latinaut.samyct.service;
+
+import com.latinaut.samyct.bean.Linea;
+
+public interface LineaService {
+
+	Linea guardar(Linea linea);
+	void eliminar(Linea linea);
+}

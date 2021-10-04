@@ -1,0 +1,15 @@
+package com.amigoscode.app.security;
+
+public enum ApplicationUserRole {
+
+	STUDENT(Sets.)
+	
+	
+//	private final Set<ApplicationUserPermission> permissions;
+//
+//	private ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
+//		this.permissions = permissions;
+//	}
+//	
+	
+}

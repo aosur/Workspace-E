@@ -1,0 +1,71 @@
+package com.latinaut.samyct.controller;
+
+import java.util.Set;
+
+import com.latinaut.samyct.bean.Contacto;
+import com.latinaut.samyct.exception.ResourceNotFoundException;
+import com.latinaut.samyct.service.ClienteService;
+import com.latinaut.samyct.service.ContactoService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("api/v1/clientes/")
+public class ContactoController {
+
+    @Autowired
+    private ContactoService contactoService;
+
+    @Autowired
+    private ClienteService clienteService;
+    
+    @GetMapping("{clienteId}/contactos")
+    public Set<Contacto> getAllContactosByCliente(@PathVariable Integer clienteId) {
+        return contactoService.buscarPorClienteId(clienteId);
+    }
+
+    @PostMapping("{clienteId}/contactos")
+    public Contacto createContacto(@RequestBody Contacto contactoRequest, @PathVariable Integer clienteId) {
+        return clienteService.buscar(clienteId)
+            .map(cliente -> {
+                contactoRequest.setCliente(cliente);
+                return contactoService.guardar(contactoRequest);
+            }).orElseThrow(() -> new ResourceNotFoundException("cliente " + clienteId + " no encontrado"));     
+    }
+
+    @PutMapping("{clienteId}/contactos/{contactoId}")
+    public Contacto updateContacto(@RequestBody Contacto contactoRequest, @PathVariable Integer clienteId, 
+            @PathVariable Integer contactoId) {
+
+        if(!clienteService.existeCliente(clienteId))
+                throw new ResourceNotFoundException("cliente " + clienteId + " no encontrado");
+
+        return contactoService.buscar(contactoId)
+                .map(contacto -> {
+                    contacto.setNombre(contactoRequest.getNombre());
+                    contacto.setTelefono(contactoRequest.getTelefono());
+                    contacto.setCelular(contactoRequest.getTelefono());
+                    contacto.setEmail(contactoRequest.getEmail());
+                    return contactoService.guardar(contacto);
+                }).orElseThrow(() -> new ResourceNotFoundException("contacto " + contactoId + " no encontrado"));
+    }
+
+    @DeleteMapping("{clienteId}/contactos/{contactoId}")
+    public ResponseEntity<?> deleteContacto(@PathVariable Integer contactoId, @PathVariable Integer clienteId) {
+        return contactoService.buscarPorIdYClienteId(contactoId, clienteId)
+                    .map(contacto -> {
+                        contactoService.eliminar(contacto);
+                        return ResponseEntity.ok().build();
+                    }).orElseThrow(() -> new ResourceNotFoundException("contacto " + contactoId + 
+                            " no encontrado, con cliente " + clienteId));
+    }
+}

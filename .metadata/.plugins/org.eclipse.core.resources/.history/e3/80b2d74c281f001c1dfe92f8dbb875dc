@@ -1,0 +1,19 @@
+package com.latinaut.samyct.util.criteria;
+
+public class OrdenCriteria {
+
+	private Integer contactoId;
+	private Integer usuarioId;
+	private Integer equipoId;
+	
+	public OrdenCriteria(Integer contactoId, Integer usuarioId, Integer equipoId) {
+		this.contactoId = contactoId;
+		this.usuarioId = usuarioId;
+		this.equipoId = equipoId;
+	}
+	public OrdenCriteria() {
+	
+	}
+	
+	
+}

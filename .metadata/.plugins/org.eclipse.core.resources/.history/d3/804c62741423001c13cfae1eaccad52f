@@ -1,0 +1,10 @@
+package com.amigoscode.app.security;
+
+public enum ApplicationUserRole {
+
+	STUDENT,
+	ADMIN,
+	ADMIN_TRAINEE;
+	
+	private Set<Application>
+}

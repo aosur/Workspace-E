@@ -1,0 +1,65 @@
+package com.latinaut.samyct.bean;
+
+public class Equipo {
+
+	private Integer id; 
+	private String marca;
+	private String modelo;
+	private String serie;
+	private Linea linea;
+	
+	public Equipo(String marca, String modelo, String serie) {
+		super();
+		this.marca = marca;
+		this.modelo = modelo;
+		this.serie = serie;
+	}
+
+	public Equipo() {
+		
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getSerie() {
+		return serie;
+	}
+
+	public void setSerie(String serie) {
+		this.serie = serie;
+	}
+
+	public Linea getLinea() {
+		return linea;
+	}
+
+	public void setLinea(Linea linea) {
+		this.linea = linea;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract local variable &apos;user&apos; from expression &apos;auth.inMemoryAuthentication()&apos;&#x0D;&#x0A;- Original project: &apos;SeguridadSpring&apos;&#x0D;&#x0A;- Variable name: &apos;user&apos;&#x0D;&#x0A;- Destination method: &apos;com.example.app.security.ApplicationSecurityConfig.configure()&apos;&#x0D;&#x0A;- Variable expression: &apos;auth.inMemoryAuthentication()&apos;&#x0D;&#x0A;- Replace occurrences of expression with variable" description="Extract local variable &apos;user&apos;" final="false" id="org.eclipse.jdt.ui.extract.temp" input="/src\/main\/java&lt;com.example.app.security{ApplicationSecurityConfig.java" name="user" replace="true" selection="616 29" stamp="1631751727399" version="1.0"/>
+</session>

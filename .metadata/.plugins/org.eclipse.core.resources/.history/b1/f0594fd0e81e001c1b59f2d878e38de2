@@ -1,0 +1,15 @@
+package com.latinaut.samyct.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+public interface LineaRepository extends JpaRepository<Linea, Integer>{
+
+	@Query(value="SELECT valor FROM Control WHERE parametro = 'Clientes'", nativeQuery = true)
+    int currentControlTable();
+
+    @Modifying 
+    @Query(value="UPDATE control SET valor = valor + 1 WHERE parametro = 'Clientes'", nativeQuery = true)
+    int updateControlTable();
+}

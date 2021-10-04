@@ -1,0 +1,39 @@
+package com.latinaut.samyct.util.criteria;
+
+public class OrdenCriteria {
+
+	private Integer contactoId;
+	private Integer usuarioId;
+	private Integer equipoId;
+	
+	public OrdenCriteria(Integer contactoId, Integer usuarioId, Integer equipoId) {
+		this.contactoId = contactoId;
+		this.usuarioId = usuarioId;
+		this.equipoId = equipoId;
+	}
+	public OrdenCriteria() {
+	
+	}
+	public Integer getContactoId() {
+		return contactoId;
+	}
+	public void setContactoId(Integer contactoId) {
+		this.contactoId = contactoId;
+	}
+	public Integer getUsuarioId() {
+		return usuarioId;
+	}
+	public void setUsuarioId(Integer usuarioId) {
+		this.usuarioId = usuarioId;
+	}
+	public Integer getEquipoId() {
+		return equipoId;
+	}
+	public void setEquipoId(Integer equipoId) {
+		this.equipoId = equipoId;
+	}
+	
+	
+	
+	
+}

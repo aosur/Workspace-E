@@ -1,0 +1,33 @@
+package com.latinaut.samyct.service.impl;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.latinaut.samyct.bean.EstadoOrden;
+import com.latinaut.samyct.repository.EstadoOrdenRepository;
+import com.latinaut.samyct.service.EstadoOrdenService;
+
+@Service
+public class EstadoOrdenServiceImpl implements EstadoOrdenService {
+
+	@Autowired
+	EstadoOrdenRepository repository;
+	
+	@Override
+	public EstadoOrden guardar(EstadoOrden estadoOrden) {
+		return repository.save(estadoOrden);
+	}
+
+	@Override
+	public Optional<EstadoOrden> buscar(Integer id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public void eliminar(EstadoOrden estadoOrden) {
+		repository.delete(estadoOrden);
+	}
+
+}
