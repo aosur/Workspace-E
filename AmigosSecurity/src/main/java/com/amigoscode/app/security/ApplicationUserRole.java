@@ -1,19 +1,19 @@
 package com.amigoscode.app.security;
 
-import static com.amigoscode.app.security.ApplicationUserPermission.COURSE_READ;
-import static com.amigoscode.app.security.ApplicationUserPermission.COURSE_WRITE;
-import static com.amigoscode.app.security.ApplicationUserPermission.STUDENT_READ;
-import static com.amigoscode.app.security.ApplicationUserPermission.STUDENT_WRITE;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
+import java.util.SimpleTimeZone;
+import java.util.stream.Collectors;
 
-import com.google.common.collect.Sets;
+import static com.amigoscode.app.security.ApplicationUserPermission.*;
 
 public enum ApplicationUserRole {
 
-	STUDENT(Sets.newHashSet()),
-	ADMIN(Sets.newHashSet(STUDENT_READ, STUDENT_WRITE, COURSE_READ, COURSE_WRITE)),
-	ADMINTRAINEE(Sets.newHashSet(STUDENT_READ, COURSE_READ));
+	STUDENT(Set.of()),
+	ADMIN(Set.of(STUDENT_READ, STUDENT_WRITE, COURSE_READ, COURSE_WRITE)),
+	ADMINTRAINEE(Set.of(STUDENT_READ, COURSE_READ));
 	
 	private final Set<ApplicationUserPermission> permissions;
 
@@ -23,5 +23,15 @@ public enum ApplicationUserRole {
 
 	public Set<ApplicationUserPermission> getPermissions() {
 		return permissions;
+	}
+
+	public Set<GrantedAuthority> getGrantedAuthorities() {
+		Set<GrantedAuthority> authorities = getPermissions().stream()
+				.map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+				.collect(Collectors.toSet());
+
+		authorities.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+
+		return authorities;
 	}
 }

@@ -3,6 +3,7 @@ package com.amigoscode.app.student;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,8 @@ public class StudentController {
 			new Student(1, "Guillermo"), 
 			new Student(2, "Ian")
 		);
-	
+
+	@PreAuthorize("hasRole('ROLE_STUDENT')")
 	@GetMapping("{studentId}")
 	public Student getStudent(@PathVariable Integer studentId) {
 		return STUDENTS.stream()
@@ -24,7 +26,8 @@ public class StudentController {
 				.findAny()
 				.orElseThrow(() -> new IllegalStateException("student " + studentId + " does not exists"));
 	}
-	
+
+	@PreAuthorize("hasRole('STUDENT')")
 	@GetMapping
 	public List<Student> getStudents() {
 		return STUDENTS;
