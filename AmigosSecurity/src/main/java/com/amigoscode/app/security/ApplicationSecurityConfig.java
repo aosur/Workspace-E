@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,12 +32,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder encoder;
 
+	@Autowired
+	private UserDetailsService userDetailsService;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.csrf().disable()
 			.authorizeRequests()
-				.antMatchers("/", "/js/**","/css/**").permitAll()
+				.antMatchers("/", "/js/**","/css/**", "/api/v1/users/**").permitAll()
 				.anyRequest()
 				.authenticated()
 			.and()
@@ -55,40 +60,18 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID", "remember-me")
 				.invalidateHttpSession(true)
 				;
-
-
-
-
 	}
 
 	@Bean
-	@Override
-	protected UserDetailsService userDetailsService() {
-		
-		UserDetails adminUser = User.builder()
-			.username("admin")
-			.password(encoder.encode("123"))
-			.authorities(ADMIN.getGrantedAuthorities()) //ROLE_ADMIN
-			.build();
-		
-		UserDetails studentUser = User.builder()
-			.username("student")
-			.password(encoder.encode("123"))
-			.authorities(STUDENT.getGrantedAuthorities()) //ROLE_STUDENT
-			.build();
-		
-		UserDetails admintraineeUser = User.builder()
-				.username("admintrainee")
-				.password(encoder.encode("123"))
-				.authorities(ADMINTRAINEE.getGrantedAuthorities()) //ROLE_ADMINTRAINEE
-				.build();
-		
-		return new InMemoryUserDetailsManager(
-					adminUser,
-					studentUser,
-					admintraineeUser
-				);
+	public DaoAuthenticationProvider daoAuthenticationProvider() {
+		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		provider.setPasswordEncoder(encoder);
+		provider.setUserDetailsService(userDetailsService);
+		return provider;
 	}
-	
 
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.authenticationProvider(daoAuthenticationProvider());
+	}
 }
