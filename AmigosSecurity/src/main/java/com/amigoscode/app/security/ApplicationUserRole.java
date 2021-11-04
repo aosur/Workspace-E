@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
-import java.util.SimpleTimeZone;
 import java.util.stream.Collectors;
 
 import static com.amigoscode.app.security.ApplicationUserPermission.*;

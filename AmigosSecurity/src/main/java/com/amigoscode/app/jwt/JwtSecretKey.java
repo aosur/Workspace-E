@@ -21,4 +21,5 @@ public class JwtSecretKey {
     public SecretKey secretKey() {
         return Keys.hmacShaKeyFor(jwtConfig.getSecretKey().getBytes());
     }
+
 }
